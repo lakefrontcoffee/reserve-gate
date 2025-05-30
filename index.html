@@ -66,33 +66,42 @@
     </div>
     <h1>Welcome to The Lakefront Reserve</h1>
     <p>To begin, tap below and verify your access.</p>
-    <button id="connect-btn">Tap to Continue</button>
+    <button id="connect-btn" disabled>Loading...</button>
   </div>
 
-  <script type="module">
-    import { Checkout } from "https://cdn.skypack.dev/@unlock-protocol/unlock-js@latest";
-
-    const unlock = new Checkout();
-    const button = document.getElementById("connect-btn");
-
-    button.onclick = async () => {
-      try {
-        await unlock.loadCheckoutModal({
-          locks: {
-            "0x428F9621EDdd811F0efc563cD96e40675c2051fA": {
-              network: 8453
-            }
-          },
-          icon: "https://lakefrontcoffee.com/cdn/shop/files/LFC-LOGO-VERT-100.png",
-          callToAction: {
-            default: "Unlock access to your Lakefront Journal."
-          }
-        });
-      } catch (err) {
-        button.disabled = true;
-        button.textContent = "Error launching checkout.";
+  <!-- Unlock Protocol Config -->
+  <script>
+    window.unlockProtocolConfig = {
+      locks: {
+        "0x428F9621EDdd811F0efc563cD96e40675c2051fA": {
+          network: 8453
+        }
+      },
+      icon: "https://lakefrontcoffee.com/cdn/shop/files/LFC-LOGO-VERT-100.png",
+      callToAction: {
+        default: "Unlock access to your Lakefront Journal"
       }
     };
+  </script>
+
+  <!-- Unlock Script -->
+  <script src="https://pay.unlock-protocol.com/static/unlock.latest.min.js"></script>
+  <script>
+    const btn = document.getElementById("connect-btn");
+
+    function tryEnableUnlock(retries = 20) {
+      if (window.unlockProtocol && typeof window.unlockProtocol.loadCheckoutModal === "function") {
+        btn.disabled = false;
+        btn.textContent = "Tap to Continue";
+        btn.onclick = () => window.unlockProtocol.loadCheckoutModal();
+      } else if (retries > 0) {
+        setTimeout(() => tryEnableUnlock(retries - 1), 500);
+      } else {
+        btn.textContent = "Unable to Load Access";
+      }
+    }
+
+    tryEnableUnlock();
   </script>
 </body>
 </html>
