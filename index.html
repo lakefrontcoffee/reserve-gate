@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Lakefront Reserve</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom, #1e2d3a, #f6e9d4);
+      color: #fdf6ec;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      background-image: url('https://lakefrontcoffee.com/cdn/shop/files/LakefrontJournal_Background_2.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 600px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    button {
+      background-color: #fdf6ec;
+      color: #1e2d3a;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:disabled {
+      background-color: #ccc;
+      color: #666;
+      cursor: not-allowed;
+    }
+    .logo img {
+      max-width: 100px;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://lakefrontcoffee.com/cdn/shop/files/LFC-LOGO-VERT-100.png" alt="Lakefront Coffee Logo">
+    </div>
+    <h1>Welcome to The Lakefront Reserve</h1>
+    <p>To begin, tap below and verify your access.</p>
+    <button id="connect-btn" disabled>Loading…</button>
+  </div>
+
+  <script>
+    window.unlockProtocolConfig = {
+      locks: {
+        "0x428F9621EDdd811F0efc563cD96e40675c2051fA": {
+          network: 8453
+        }
+      },
+      icon: "https://lakefrontcoffee.com/cdn/shop/files/LFC-LOGO-VERT-100.png",
+      callToAction: {
+        default: "Tap to unlock your Lakefront Journal experience."
+      }
+    };
+  </script>
+
+  <script src="https://pay.unlock-protocol.com/static/unlock.latest.min.js"></script>
+  <script>
+    const btn = document.getElementById("connect-btn");
+
+    function waitForUnlock(retries = 15) {
+      if (window.unlockProtocol && typeof window.unlockProtocol.loadCheckoutModal === "function") {
+        btn.disabled = false;
+        btn.textContent = "Tap to Continue";
+        btn.onclick = () => window.unlockProtocol.loadCheckoutModal();
+      } else if (retries > 0) {
+        setTimeout(() => waitForUnlock(retries - 1), 300);
+      } else {
+        btn.textContent = "Unable to Load Access";
+      }
+    }
+
+    waitForUnlock();
+  </script>
+</body>
+</html>
