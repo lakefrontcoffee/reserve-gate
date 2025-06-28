@@ -1,72 +1,163 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Lakefront Reserve</title>
+  <title>$BEANS – Lakefront Rewards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/viem/dist/index.umd.js"></script>
   <style>
     body {
       margin: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(to bottom, #1e2d3a, #f6e9d4);
-      color: #fdf6ec;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
-      background-image: url('https://lakefrontcoffee.com/cdn/shop/files/LakefrontJournal_Background_2.jpg');
-      background-size: cover;
-      background-position: center;
-    }
-    .container {
-      background: rgba(0, 0, 0, 0.6);
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #e8f1ec, #fff5e4);
+      color: #2e2e2e;
       padding: 2rem;
-      border-radius: 16px;
-      max-width: 600px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      line-height: 1.6;
+      text-align: center;
+    }
+    .logo {
+      max-width: 180px;
+      margin: 0 auto 1.5rem auto;
+      display: block;
+    }
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+      margin-top: 1rem;
     }
     h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
     }
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
+    h2 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
     }
-    a.button {
-      display: inline-block;
-      background-color: #fdf6ec;
-      color: #1e2d3a;
-      font-weight: bold;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 6px;
+    p, li {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 1rem auto;
+    }
+    a {
+      color: #1a73e8;
       text-decoration: none;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
     }
-    a.button:hover {
-      background-color: #e5ddc5;
+    a:hover {
+      text-decoration: underline;
     }
-    .logo img {
-      max-width: 100px;
-      margin-bottom: 1.5rem;
-      opacity: 0.9;
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin-bottom: 0.75rem;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 2rem;
+      background-color: #2e2e2e;
+      color: #fff;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .cta-button:hover {
+      background-color: #444;
+    }
+    #balanceDisplay {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-top: 1.5rem;
+      color: #1a73e8;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.4rem;
+      }
+      p, li {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">
-      <img src="https://lakefrontcoffee.com/cdn/shop/files/LFC-LOGO-VERT-100.png" alt="Lakefront Coffee Logo">
-    </div>
-    <h1>Welcome to The Lakefront Reserve</h1>
-    <p>Tap below to verify access and claim your membership journal.</p>
-    <a class="button" href="https://app.unlock-protocol.com/checkout?locks=0x428F9621EDdd811F0efc563cD96e40675c2051fA&network=8453&referrer=lakefrontcoffee.com" target="_blank">Tap to Continue</a>
-  </div>
+  <main>
+    <img src="https://lakefrontcoffee.com/cdn/shop/files/LFC-LOGO-VERT-100.png" alt="Lakefront Coffee Logo" class="logo">
+    <h1>Introducing $BEANS: Your Lakefront Rewards</h1>
+    <p>$BEANS are our exclusive Lakefront Rewards Points. Earn them by shopping, connecting with our community, and joining in our special events. They’re yours to collect, use, and celebrate.</p>
+    <h2>How You Earn $BEANS</h2>
+    <ul>
+      <li>🛍️ Every online purchase at <a href="https://lakefrontcoffee.com">lakefrontcoffee.com</a></li>
+      <li>📓 Holding your Lakefront Journal membership</li>
+      <li>🎉 Coming to pop-ups and tasting events</li>
+      <li>🌊 Taking part in community clean-ups</li>
+      <li>📣 Sharing and engaging with us on social media</li>
+    </ul>
+    <h2>Why You'll Love $BEANS</h2>
+    <ul>
+      <li>✅ Fully digital and easy to track</li>
+      <li>🎁 Unlocks members-only coffee drops and rewards</li>
+      <li>⚡ Fast and free to collect and redeem</li>
+      <li>🌱 Integrated with your Lakefront Journal and your personal account</li>
+    </ul>
+    <h2>What’s Ahead</h2>
+    <ul>
+      <li><strong>Q2 2025:</strong> Launch and give rewards to early members</li>
+      <li><strong>Q3 2025:</strong> Enable redemptions for discounts and exclusive products</li>
+      <li><strong>Q4 2025:</strong> Launch community voting and ways to contribute</li>
+      <li><strong>2026:</strong> Expand rewards to events, partnerships, and new experiences</li>
+    </ul>
+    <h2>Details</h2>
+    <ul>
+      <li>🌿 <strong>Name:</strong> $BEANS</li>
+      <li>📍 <strong>Network:</strong> Base</li>
+      <li>💧 <strong>Total Supply:</strong> 100,000,000</li>
+      <li>🏷️ <strong>Contract Address:</strong> 0x9D1FeFc037123154A8f4f51CB9fFBad18b67FeF6</li>
+      <li>🔗 <a href="https://basescan.org/token/0x9D1FeFc037123154A8f4f51CB9fFBad18b67FeF6" target="_blank">View on BaseScan</a></li>
+    </ul>
+    <p id="balanceDisplay">Loading your $BEANS balance...</p>
+    <a href="/pages/reserve" class="cta-button">Grab Your Lakefront Journal</a>
+  </main>
+
+  <script>
+    async function loadBalance() {
+      const provider = new window.viem.createPublicClient({
+        chain: window.viem.base,
+        transport: window.viem.http()
+      });
+
+      if (window.ethereum) {
+        try {
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+          const [account] = await window.ethereum.request({ method: 'eth_accounts' });
+
+          const balance = await provider.readContract({
+            address: '0x9D1FeFc037123154A8f4f51CB9fFBad18b67FeF6',
+            abi: [
+              { "constant": true, "inputs": [{ "name": "owner", "type": "address" }], "name": "balanceOf", "outputs": [{ "name": "balance", "type": "uint256" }], "type": "function" }
+            ],
+            functionName: 'balanceOf',
+            args: [account]
+          });
+
+          const decimals = 18;
+          const displayBalance = Number(balance) / (10 ** decimals);
+          document.getElementById('balanceDisplay').textContent = `You have ${displayBalance} $BEANS`;
+        } catch (err) {
+          document.getElementById('balanceDisplay').textContent = "Couldn't load balance. Make sure your wallet is connected.";
+        }
+      } else {
+        document.getElementById('balanceDisplay').textContent = "Connect a compatible wallet to see your balance.";
+      }
+    }
+
+    loadBalance();
+  </script>
 </body>
 </html>
