@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lakefront Rewards Access</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
+  <title>$BEANS Bag + Journal Access</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -19,94 +18,70 @@
     h1 {
       font-family: 'Playfair Display', serif;
       font-size: 2.5rem;
-      margin-bottom: 1rem;
+      margin-top: 1rem;
     }
     p {
       font-size: 1.2rem;
-      margin-bottom: 1rem;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
     }
-    button {
-      padding: 0.75rem 1.5rem;
-      font-size: 1.2rem;
-      font-weight: 600;
-      background-color: #2e2e2e;
+    .token-gate-container {
+      margin: 2rem auto;
+    }
+    .cta-button {
+      display: inline-block;
+      background-color: #4A321F;
       color: #fff;
+      padding: 1rem 2rem;
+      font-size: 1.25rem;
+      font-weight: 600;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
+      text-decoration: none;
+      margin-top: 1rem;
     }
-    button:hover {
-      background-color: #444;
+    .cta-button:hover {
+      background-color: #3b2818;
     }
-    #balance {
+    #balanceDisplay {
+      font-size: 1.25rem;
+      font-weight: bold;
       margin-top: 1.5rem;
-      font-size: 1.2rem;
       color: #1a73e8;
     }
-    #fallback {
-      margin-top: 2rem;
-      font-size: 1.2rem;
-      color: #555;
-    }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@unlock-protocol/unlock-js@latest/dist/unlock.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/viem/dist/index.umd.js"></script>
 </head>
 <body>
-  <h1>✨ Verify Your Membership</h1>
-  <p>Connect your $BEANS Bag or Journal to unlock exclusive rewards.</p>
-  <button id="connect">Connect $BEANS Bag</button>
-  <div id="balance"></div>
-  <div id="fallback" style="display:none;">
-    🌱 Looks like you haven’t unlocked access yet.
-    <br>
-    <a href="https://lakefrontcoffee.com/pages/reserve" style="color:#1a73e8;text-decoration:underline;">Grab your Lakefront Journal or start collecting $BEANS.</a>
-  </div>
+  <main>
+    <h1>✨ Verify Your Membership</h1>
+    <p>Connect your $BEANS Bag or Journal below to unlock exclusive rewards, updates, and special offers.</p>
+
+    <div id="tokenGate" class="token-gate-container">
+      <!-- The Connect button will be injected here -->
+    </div>
+
+    <p id="balanceDisplay">Loading your $BEANS balance...</p>
+
+    <a href="https://lakefrontcoffee.com/pages/reserve" class="cta-button">Grab Your Lakefront Journal</a>
+  </main>
 
   <script>
-    const connectButton = document.getElementById('connect');
-    const balanceDisplay = document.getElementById('balance');
-    const fallback = document.getElementById('fallback');
+    const tokenGateDiv = document.getElementById('tokenGate');
 
-    const beansContract = "0x9D1FeFc037123154A8f4f51CB9fFBad18b67FeF6";
-    const journalContract = "0xA55e672549a59BAD61B06C8291f3E857513FA793";
-
-    const beansABI = [
-      "function balanceOf(address) view returns (uint256)"
-    ];
-    const journalABI = [
-      "function balanceOf(address) view returns (uint256)"
-    ];
-
-    connectButton.onclick = async () => {
-      if (typeof window.ethereum === 'undefined') {
-        alert("Please install a wallet like MetaMask to continue.");
+    async function renderTokenGate() {
+      if (!window.ethereum) {
+        tokenGateDiv.innerHTML = `<p>❌ No wallet found. Please install a wallet like MetaMask.</p>`;
         return;
       }
+      const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const provider = new viem.createPublicClient({
+        chain: viem.base,
+        transport: viem.http()
+      });
 
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      await provider.send("eth_requestAccounts", []);
-      const signer = provider.getSigner();
-      const userAddress = await signer.getAddress();
+      const journalContract = "0xA55e672549a59BAD61B06C8291f3E857513FA793";
+      const beansContract = "0x9D1FeFc037123154A8f4f51
 
-      const beans = new ethers.Contract(beansContract, beansABI, provider);
-      const journal = new ethers.Contract(journalContract, journalABI, provider);
-
-      const beansBalance = await beans.balanceOf(userAddress);
-      const journalBalance = await journal.balanceOf(userAddress);
-
-      const hasBeans = beansBalance.gt(0);
-      const hasJournal = journalBalance.gt(0);
-
-      if (hasBeans || hasJournal) {
-        if (hasBeans) {
-          balanceDisplay.innerText = `✅ You currently hold ${ethers.utils.formatUnits(beansBalance, 18)} BEANS.`;
-        }
-        if (hasJournal && !hasBeans) {
-          balanceDisplay.innerText = `✅ Journal detected in your $BEANS Bag. Welcome!`;
-        }
-      } else {
-        fallback.style.display = 'block';
-      }
-    };
-  </script>
-</body>
-</html>
