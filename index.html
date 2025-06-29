@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lakefront $BEANS Rewards</title>
+  <title>Lakefront $BEANS Loyalty</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -15,19 +15,22 @@
       line-height: 1.6;
       text-align: center;
     }
-    h1, h2, h3 {
+    header img {
+      width: 150px;
+      margin-bottom: 1.5rem;
+    }
+    h1, h2 {
       font-family: 'Playfair Display', serif;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
     h1 {
-      font-size: 2.75rem;
+      font-size: 2.5rem;
     }
     h2 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.75rem;
     }
     p, li {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
     }
     a {
       color: #1a73e8;
@@ -37,13 +40,12 @@
       text-decoration: underline;
     }
     ul {
-      padding-left: 1.2rem;
-      text-align: left;
-      display: inline-block;
+      list-style: none;
+      padding-left: 0;
+      margin: 1rem 0;
     }
-    .section {
-      max-width: 800px;
-      margin: auto;
+    ul li::before {
+      content: "🌱 ";
     }
     .cta-button {
       display: inline-block;
@@ -62,15 +64,10 @@
       background-color: #444;
     }
     #balanceDisplay {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: bold;
       margin-top: 1.5rem;
       color: #1a73e8;
-    }
-    .logo {
-      width: 145px;
-      margin: 0 auto 2rem auto;
-      display: block;
     }
     @media (max-width: 600px) {
       h1 {
@@ -83,43 +80,51 @@
   </style>
 </head>
 <body>
-  <img src="https://lakefrontcoffee.com/cdn/shop/files/LFC-LOGO-VERT-100.png?v=1743911454&width=190" alt="Lakefront Coffee Logo" class="logo" />
-  <div class="section" id="unlock-section">
+  <header>
+    <img src="https://lakefrontcoffee.com/cdn/shop/files/LFC-LOGO-VERT-100.png?v=1743911454&width=190" alt="Lakefront Coffee Logo" />
+  </header>
+  <main>
     <h1>Introducing $BEANS: Your Lakefront Loyalty Points</h1>
-    <p>$BEANS is our official onchain loyalty point for Lakefront Coffee Reserve — built on the Base network. It rewards our community for showing up, sipping mindfully, and making waves with us both online and IRL.</p>
+    <p>$BEANS is our official loyalty point for Lakefront Coffee Reserve. Earn them when you shop, engage, and connect with our community.</p>
+
     <h2>How to Earn $BEANS</h2>
     <ul>
-      <li>🛍️ Every online purchase at <a href="https://lakefrontcoffee.com">lakefrontcoffee.com</a></li>
-      <li>📓 Holding a Lakefront Journal NFT</li>
-      <li>🎉 Attending pop-ups, trade shows, and events</li>
-      <li>🌊 Participating in Ripple Effect cleanups</li>
-      <li>📣 Sharing and engaging on social media</li>
+      <li>Every online purchase at <a href="https://lakefrontcoffee.com">lakefrontcoffee.com</a></li>
+      <li>Holding your Lakefront Journal</li>
+      <li>Joining our events and pop-ups</li>
+      <li>Supporting clean water efforts</li>
+      <li>Sharing the Lakefront story</li>
     </ul>
-    <h2>What Makes $BEANS Special?</h2>
+
+    <h2>Why You'll Love $BEANS</h2>
     <ul>
-      <li>✅ Onchain and transparent — you truly own your points</li>
-      <li>🔐 Used to unlock exclusive coffee drops, merch, and token-gated perks</li>
-      <li>⛽ Built on Base for fast and low-cost rewards</li>
-      <li>🔁 Fully integrated with our digital journal and community experience</li>
+      <li>Transparent and trackable rewards</li>
+      <li>Unlock exclusive coffee drops and merchandise</li>
+      <li>Low-cost, fast transactions</li>
+      <li>Integrated with your Journal and community perks</li>
     </ul>
-    <h2>$BEANS Token Roadmap</h2>
+
+    <h2>$BEANS Roadmap</h2>
     <ul>
-      <li><strong>Q2 2025:</strong> Launch token and distribute to journal holders</li>
-      <li><strong>Q3 2025:</strong> Introduce $BEANS-redeemable discounts and digital redemptions</li>
-      <li><strong>Q4 2025:</strong> Begin testing onchain voting and contribution tracking</li>
-      <li><strong>2026:</strong> Expand to metaverse events, cleanup sponsorships, and collabs</li>
+      <li><strong>Q2 2025:</strong> Launch and distribute to Journal holders</li>
+      <li><strong>Q3 2025:</strong> Enable redemptions and discounts</li>
+      <li><strong>Q4 2025:</strong> Launch community voting</li>
+      <li><strong>2026:</strong> Expand to new experiences and partnerships</li>
     </ul>
+
     <h2>Token Info</h2>
     <ul>
-      <li>🔗 <strong>Name:</strong> BEANS</li>
-      <li>🧬 <strong>Chain:</strong> Base</li>
-      <li>📝 <strong>Token Type:</strong> ERC-20</li>
-      <li>🏷️ <strong>Supply:</strong> 100,000,000 BEANS</li>
-      <li>🔗 <strong>Contract Address:</strong> 0x9D1FeFc037123154A8f4f51CB9fFBad18b67FeF6</li>
-      <li>🧾 <strong>View on BaseScan:</strong> <a href="https://basescan.org/token/0x9D1FeFc037123154A8f4f51CB9fFBad18b67FeF6" target="_blank">$BEANS on BaseScan</a></li>
+      <li><strong>Name:</strong> BEANS</li>
+      <li><strong>Chain:</strong> Base</li>
+      <li><strong>Type:</strong> ERC-20</li>
+      <li><strong>Supply:</strong> 100,000,000 BEANS</li>
+      <li><strong>Contract:</strong> 0x9D1FeFc037123154A8f4f51CB9fFBad18b67FeF6</li>
+      <li><a href="https://basescan.org/token/0x9D1FeFc037123154A8f4f51CB9fFBad18b67FeF6" target="_blank">View on BaseScan</a></li>
     </ul>
+
     <p id="balanceDisplay">Loading your $BEANS balance...</p>
+
     <a href="https://lakefrontcoffee.com/pages/reserve" class="cta-button">Grab Your Lakefront Journal</a>
-  </div>
+  </main>
 </body>
 </html>
