@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>$BEANS Bag + Journal Access</title>
+  <title>Lakefront $BEANS Rewards</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -15,22 +15,40 @@
       line-height: 1.6;
       text-align: center;
     }
-    h1 {
+    h1, h2, h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      margin-top: 1rem;
+      margin-top: 2rem;
     }
-    p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
+    h1 {
+      font-size: 2.75rem;
     }
-    .token-gate-container {
-      margin: 2rem auto;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, li {
+      font-size: 1.25rem;
+    }
+    a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      padding-left: 1.2rem;
+      text-align: left;
+      display: inline-block;
+    }
+    .section {
+      max-width: 800px;
+      margin: auto;
     }
     .cta-button {
       display: inline-block;
-      background-color: #4A321F;
+      margin-top: 2rem;
+      background-color: #2e2e2e;
       color: #fff;
       padding: 1rem 2rem;
       font-size: 1.25rem;
@@ -39,10 +57,9 @@
       border-radius: 8px;
       cursor: pointer;
       text-decoration: none;
-      margin-top: 1rem;
     }
     .cta-button:hover {
-      background-color: #3b2818;
+      background-color: #444;
     }
     #balanceDisplay {
       font-size: 1.25rem;
@@ -50,38 +67,59 @@
       margin-top: 1.5rem;
       color: #1a73e8;
     }
+    .logo {
+      width: 145px;
+      margin: 0 auto 2rem auto;
+      display: block;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p, li {
+        font-size: 1rem;
+      }
+    }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/@unlock-protocol/unlock-js@latest/dist/unlock.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/viem/dist/index.umd.js"></script>
 </head>
 <body>
-  <main>
-    <h1>✨ Verify Your Membership</h1>
-    <p>Connect your $BEANS Bag or Journal below to unlock exclusive rewards, updates, and special offers.</p>
-
-    <div id="tokenGate" class="token-gate-container">
-      <!-- The Connect button will be injected here -->
-    </div>
-
+  <img src="https://lakefrontcoffee.com/cdn/shop/files/LFC-LOGO-VERT-100.png?v=1743911454&width=190" alt="Lakefront Coffee Logo" class="logo" />
+  <div class="section" id="unlock-section">
+    <h1>Introducing $BEANS: Your Lakefront Loyalty Points</h1>
+    <p>$BEANS is our official onchain loyalty point for Lakefront Coffee Reserve — built on the Base network. It rewards our community for showing up, sipping mindfully, and making waves with us both online and IRL.</p>
+    <h2>How to Earn $BEANS</h2>
+    <ul>
+      <li>🛍️ Every online purchase at <a href="https://lakefrontcoffee.com">lakefrontcoffee.com</a></li>
+      <li>📓 Holding a Lakefront Journal NFT</li>
+      <li>🎉 Attending pop-ups, trade shows, and events</li>
+      <li>🌊 Participating in Ripple Effect cleanups</li>
+      <li>📣 Sharing and engaging on social media</li>
+    </ul>
+    <h2>What Makes $BEANS Special?</h2>
+    <ul>
+      <li>✅ Onchain and transparent — you truly own your points</li>
+      <li>🔐 Used to unlock exclusive coffee drops, merch, and token-gated perks</li>
+      <li>⛽ Built on Base for fast and low-cost rewards</li>
+      <li>🔁 Fully integrated with our digital journal and community experience</li>
+    </ul>
+    <h2>$BEANS Token Roadmap</h2>
+    <ul>
+      <li><strong>Q2 2025:</strong> Launch token and distribute to journal holders</li>
+      <li><strong>Q3 2025:</strong> Introduce $BEANS-redeemable discounts and digital redemptions</li>
+      <li><strong>Q4 2025:</strong> Begin testing onchain voting and contribution tracking</li>
+      <li><strong>2026:</strong> Expand to metaverse events, cleanup sponsorships, and collabs</li>
+    </ul>
+    <h2>Token Info</h2>
+    <ul>
+      <li>🔗 <strong>Name:</strong> BEANS</li>
+      <li>🧬 <strong>Chain:</strong> Base</li>
+      <li>📝 <strong>Token Type:</strong> ERC-20</li>
+      <li>🏷️ <strong>Supply:</strong> 100,000,000 BEANS</li>
+      <li>🔗 <strong>Contract Address:</strong> 0x9D1FeFc037123154A8f4f51CB9fFBad18b67FeF6</li>
+      <li>🧾 <strong>View on BaseScan:</strong> <a href="https://basescan.org/token/0x9D1FeFc037123154A8f4f51CB9fFBad18b67FeF6" target="_blank">$BEANS on BaseScan</a></li>
+    </ul>
     <p id="balanceDisplay">Loading your $BEANS balance...</p>
-
     <a href="https://lakefrontcoffee.com/pages/reserve" class="cta-button">Grab Your Lakefront Journal</a>
-  </main>
-
-  <script>
-    const tokenGateDiv = document.getElementById('tokenGate');
-
-    async function renderTokenGate() {
-      if (!window.ethereum) {
-        tokenGateDiv.innerHTML = `<p>❌ No wallet found. Please install a wallet like MetaMask.</p>`;
-        return;
-      }
-      const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const provider = new viem.createPublicClient({
-        chain: viem.base,
-        transport: viem.http()
-      });
-
-      const journalContract = "0xA55e672549a59BAD61B06C8291f3E857513FA793";
-      const beansContract = "0x9D1FeFc037123154A8f4f51
-
+  </div>
+</body>
+</html>
